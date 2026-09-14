@@ -336,7 +336,7 @@ namespace Lively.UI.Shared.ViewModels
             {
                 try
                 {
-                    return File.Exists(Path.Combine(desktopCore.BaseDirectory, "plugins", "mpv", "youtube-dl.exe"));
+                    return File.Exists(Path.Combine(desktopCore.BaseDirectory, Constants.PlayerPartialPaths.YtDlpPath));
                 }
                 catch
                 {

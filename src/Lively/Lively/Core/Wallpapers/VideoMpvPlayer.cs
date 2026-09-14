@@ -573,7 +573,9 @@ namespace Lively.Core.Wallpapers
 
         private static string GetYtDlMpvArg(StreamQualitySuggestion qualitySuggestion, string link)
         {
-            return link + qualitySuggestion switch
+            var ytDlpPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.PlayerPartialPaths.YtDlpPath);
+            var arguments = $"--script-opts-append=ytdl_hook-ytdl_path=\"{ytDlpPath}\" \"{link}\"";
+            return arguments + (qualitySuggestion switch
             {
                 StreamQualitySuggestion.Lowest => " --ytdl-format=bestvideo[height<=144]+bestaudio/best",
                 StreamQualitySuggestion.Low => " --ytdl-format=bestvideo[height<=240]+bestaudio/best",
@@ -583,7 +585,7 @@ namespace Lively.Core.Wallpapers
                 StreamQualitySuggestion.High => " --ytdl-format=bestvideo[height<=1080]+bestaudio/best",
                 StreamQualitySuggestion.Highest => " --ytdl-format=bestvideo+bestaudio/best",
                 _ => string.Empty,
-            };
+            });
         }
 
         #endregion //mpv util

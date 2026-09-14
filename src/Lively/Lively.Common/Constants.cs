@@ -46,6 +46,7 @@ namespace Lively.Common
         {
             public static string MpvDir { get; } = Path.Combine("plugins", "mpv");
             public static string MpvPath { get; } = Path.Combine(MpvDir, "mpv.exe");
+            public static string YtDlpPath { get; } = Path.Combine(MpvDir, "yt-dlp.exe");
             public static string CefSharpDir { get; } = Path.Combine("plugins", "cef");
             public static string CefSharpPath { get; } = Path.Combine(CefSharpDir, "Lively.Player.CefSharp.exe");
             public static string WebView2Dir { get; } = Path.Combine("plugins", "webview2");

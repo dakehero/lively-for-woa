@@ -1,4 +1,5 @@
-﻿using Lively.Common.Helpers;
+﻿using Lively.Common;
+using Lively.Common.Helpers;
 using Lively.Common.Services;
 using Lively.Core;
 using Lively.Core.Display;
@@ -168,7 +169,7 @@ namespace Lively.Factories
                           userSettings.Settings.WallpaperWaitTime);
                     }
                 case WallpaperType.videostream:
-                    if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plugins", "mpv", "youtube-dl.exe")))
+                    if (File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.PlayerPartialPaths.YtDlpPath)))
                     {
                         return new VideoMpvPlayer(model.FilePath,
                             model,
