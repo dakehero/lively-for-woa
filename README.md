@@ -1,4 +1,10 @@
 
+# Lively for WoA
+
+Windows ARM64 development fork of [Lively Wallpaper](https://github.com/rocksdanister/lively).
+ARM64 backend coverage is still in progress; see the [build notes](build/README.md).
+The original project information and credits follow below.
+
 <p align="center">
   <img alt="Files Logo" src="resources/figma_promo_16x9.jpg" width="450" />
   <h2 align="center">Lively Wallpaper</h2>
