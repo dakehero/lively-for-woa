@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "projects": [
+    {
+      "name": "Lively",
+      "project": "src/Lively/Lively/Lively.csproj",
+      "destination": ".",
+      "selfContained": true,
+      "platformByRid": {
+        "win-x64": "AnyCPU",
+        "win-arm64": "AnyCPU"
+      }
+    },
+    {
+      "name": "Lively.UI.WinUI",
+      "project": "src/Lively/Lively.UI.WinUI/Lively.UI.WinUI.csproj",
+      "destination": "plugins/UI",
+      "selfContained": true,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": "arm64"
+      }
+    },
+    {
+      "name": "Lively.Player.CefSharp",
+      "project": "src/Lively/Lively.Player.CefSharp/Lively.Player.CefSharp.csproj",
+      "destination": "plugins/cef",
+      "selfContained": false,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": null
+      }
+    },
+    {
+      "name": "Lively.Player.Vlc",
+      "project": "src/Lively/Lively.Player.Vlc/Lively.Player.Vlc.csproj",
+      "destination": "plugins/libvlc",
+      "selfContained": false,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": "ARM64"
+      }
+    },
+    {
+      "name": "Lively.Player.WebView2",
+      "project": "src/Lively/Lively.Player.WebView2/Lively.Player.WebView2.csproj",
+      "destination": "plugins/webview2",
+      "selfContained": false,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": "ARM64"
+      }
+    },
+    {
+      "name": "Lively.Player.Wmf",
+      "project": "src/Lively/Lively.Player.Wmf/Lively.Player.Wmf.csproj",
+      "destination": "plugins/wmf",
+      "selfContained": false,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": "ARM64"
+      }
+    },
+    {
+      "name": "Lively.Utility.Screensaver",
+      "project": "src/Lively/Lively.Utility.Screensaver/Lively.Utility.Screensaver.csproj",
+      "destination": "plugins/screensaver",
+      "selfContained": false,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": "ARM64"
+      }
+    },
+    {
+      "name": "Lively.Utility.Watchdog",
+      "project": "src/Lively/Lively.Utility.Watchdog/Lively.Utility.Watchdog.csproj",
+      "destination": "plugins/Watchdog",
+      "selfContained": false,
+      "platformByRid": {
+        "win-x64": "x64",
+        "win-arm64": "ARM64"
+      }
+    }
+  ]
+}

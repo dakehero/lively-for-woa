@@ -334,3 +334,8 @@ ASALocalRun/
 /src/Lively/Lively/Plugins/
 /src/Lively/Lively/Build/
 /src/Lively/Lively.UI.WinUI/Build/
+
+# Local development files
+/artifacts/
+/.worktrees/
+/docs/superpowers/

@@ -26,10 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Plugins\**">
+    <Content Include="Plugins\**" Condition="'$(LivelyManagedPublish)' != 'true'">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Bundle\**">
+    <Content Include="Bundle\**" Condition="'$(LivelyManagedPublish)' != 'true'">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
