@@ -31,6 +31,10 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <!-- Create Properties/PublishProfiles for each release, Example: win10-x86.pubxml-->
     <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <LivelyReleaseRid Condition="'$(Platform)' == 'x64'">win-x64</LivelyReleaseRid>
+    <LivelyReleaseRid Condition="'$(Platform)' == 'arm64'">win-arm64</LivelyReleaseRid>
+    <LivelyReleaseRootFullPath Condition="'$(LivelyReleaseRoot)' != ''">$([System.IO.Path]::GetFullPath('$(LivelyReleaseRoot)'))</LivelyReleaseRootFullPath>
+    <LivelyExpectedReleaseRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\..\artifacts\release\$(LivelyReleaseRid)'))</LivelyExpectedReleaseRoot>
     <!-- Temporary cert-->
     <!--
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
@@ -39,13 +43,27 @@
     -->
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(IsMsixRelease)' == 'true'">
-    <!-- Include self-contained core build here (excluding UI plugin.) -->
+  <ItemGroup Condition="'$(IsMsixRelease)' == 'true' and '$(LivelyReleaseRoot)' == ''">
     <Folder Include="Build\" />
     <Content Include="Build\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup Condition="'$(IsMsixRelease)' == 'true' and '$(LivelyReleaseRoot)' != ''">
+    <!-- The WinUI executable is packaged at the root, so exclude its staged plugin duplicate. -->
+    <Content Include="$(LivelyReleaseRootFullPath)\**\*"
+             Exclude="$(LivelyReleaseRootFullPath)\plugins\UI\**\*"
+             Link="Build\%(RecursiveDir)%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="ValidateLivelyReleaseRoot" BeforeTargets="PrepareForBuild" Condition="'$(IsMsixRelease)' == 'true' and '$(LivelyReleaseRoot)' != ''">
+    <Error Condition="'$(LivelyReleaseRid)' == ''" Text="MSIX release supports only x64 and arm64 platforms." />
+    <Error Condition="'$(LivelyReleaseRootFullPath)' != '$(LivelyExpectedReleaseRoot)'" Text="LivelyReleaseRoot must match $(LivelyExpectedReleaseRoot)." />
+    <Error Condition="!Exists('$(LivelyReleaseRootFullPath)\Lively.exe')" Text="Verified Lively release is missing: $(LivelyReleaseRootFullPath)" />
+  </Target>
   
   <ItemGroup>
     <None Remove="Assets\banner-lively-1080.jpg" />
